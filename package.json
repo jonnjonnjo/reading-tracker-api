@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "build": "npx prisma generate",
+    "postinstall": "npx prisma generate",
     "start": "node ./bin/www"
   },
   "dependencies": {
