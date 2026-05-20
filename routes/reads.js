@@ -4,6 +4,11 @@ const prisma = require('../lib/prisma')
 router.get('/', async (req, res) => {
   const reads = await prisma.read.findMany()
   res.json(reads)
+});
+
+
+router.get("/test", async (req, res) => {
+  res.send("Tested successfully from /read/test")
 })
 
 router.post('/', async (req, res) => {
