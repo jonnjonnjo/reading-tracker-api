@@ -5,7 +5,8 @@
   "scripts": {
     "build": "npx prisma generate",
     "postinstall": "npx prisma generate",
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "gen:env": "sed 's/=.*/=/' .env > .env.example"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.8.0",
