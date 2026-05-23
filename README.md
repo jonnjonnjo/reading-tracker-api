@@ -9,7 +9,7 @@ graph TD
     Client["Client (HTTP)"]
     Auth["Auth Middleware\n(API Key check)"]
     Router["Express Router"]
-    ReadsRoute["POST /reads\nGET /reads"]
+    ReadsRoute["POST /reads\nGET /reads\nGET /reads/check"]
     Prisma["Prisma Client\n(driver adapter)"]
     Neon[("Neon PostgreSQL")]
 
@@ -50,6 +50,32 @@ Returns all saved reads.
     "createdAt": "2026-05-21T00:00:00.000Z"
   }
 ]
+```
+
+---
+
+### `GET /reads/check?url=`
+
+Checks whether a URL has already been saved.
+
+**Query parameters**
+
+| Parameter | Required | Description        |
+|-----------|----------|--------------------|
+| `url`     | yes      | The URL to look up |
+
+**Response `200`**
+```json
+{ "exists": true, "read": { "id": 1, "url": "https://example.com", "notes": "great read", "createdAt": "2026-05-21T00:00:00.000Z" } }
+```
+
+```json
+{ "exists": false, "read": null }
+```
+
+**Response `400`** — missing `url` param
+```json
+{ "error": "url query parameter is required" }
 ```
 
 ---
